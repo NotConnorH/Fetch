@@ -84,7 +84,7 @@ do
 						mount -t auto /dev/$userdisk  /mnt/;;
 				
 						## Displays error message to user if their entry is invalid
-						*) printf"\nPlease enter a valid device name. If you are unsure, enter 'show disks' to see a list of all disks present.\n";;
+						*) printf "\nPlease enter a valid device name. If you are unsure, enter 'show disks' to see a list of all disks present.\n";;
 			
 					esac;;
 				
@@ -98,18 +98,16 @@ do
 					read -p "----> " choice
 					 
 					case $choice in
-						1) fdisk -l
-							break;;
+						1) fdisk -l;;
 							  
-						2) fdisk -l /dev/sda
-							 break;;
+						2) fdisk -l /dev/sda;;
 							  
 						*) printf "Invalid option selected";;
 					 esac;;
 					 
 
 			5) python ChromeFetch.py;;
-			6) python MozillaFireFetch.py;;
+			6) python MozillaFireFetch.py /mnt/Users/$username/AppData/Roaming/Mozilla/Firefox/Profiles/*;;
 			
 			7) python Strength_Checker.py;;
 			
@@ -122,7 +120,7 @@ do
 				case $username in
 			
 					## Shows all Windows users from the SAM file on the Windows partition
-					'show users') chntpw -l /mnt/$userdisk/Windows/System32/config/SAM;;
+					'show users') chntpw -l /mnt//Windows/System32/config/SAM;;
 			
 					## Saves the user's input to variable $username and displays it to the user
 					*) printf "\nYou have selected user: "$username". This can be changed later from the Fetch Main Menu\n";;
