@@ -24,12 +24,14 @@ for url, user_name, pwd, in login_data:
     pwd = win32crypt.CryptUnprotectData(pwd, None, None, None, 0)  # This returns a tuple description and the password
     credential[url] = (user_name, pwd[1])
 
-# Writes output to a text file. Is saved in the Pycharm Projects folder, in the Fetch Tools project folder
-for url, credentials in credential.iteritems():
-    # Error checking in case there are no saved credentials for Chrome
-    if credentials[1]:
-        print("\n" + url + "\n" + credentials[0].encode('utf-8') + " | " + credentials[1] + "\n")
-    else:
-        print("\n" + url + "\n" + "No saved Google Chrome credentials found. Returning to Fetch Main Menu....\n")
+# Prints the decrypted data to the screen upon user
+prompt = raw_input("Are you sure you want to display all this sensitive data? y/n")
+if prompt == 'y':
+        for url, credentials in credential.iteritems():
+            # Error checking in case there are no saved credentials for Chrome
+            if credentials[1]:
+                f.write("\n" + url + "\n" + credentials[0].encode('utf-8') + " | " + credentials[1] + "\n")
+            else:
+                f.write("\n" + url + "\n" + "No saved Google Chrome credentials found. Returning to Fetch Main Menu....\n")
 else:
     quit()
